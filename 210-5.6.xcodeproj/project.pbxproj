@@ -7,7 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		A90FEE8D1AC5ACE3003969B1 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A90FEE8C1AC5ACE3003969B1 /* main.cpp */; };
+		A90FEE9C1AC5AD0E003969B1 /* Comparator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A90FEE941AC5AD0E003969B1 /* Comparator.cpp */; };
+		A90FEE9E1AC5AD0E003969B1 /* Object.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A90FEE981AC5AD0E003969B1 /* Object.cpp */; };
+		A90FEE9F1AC5AD0E003969B1 /* PriorityQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A90FEE9A1AC5AD0E003969B1 /* PriorityQueue.cpp */; };
+		A90FEEA11AC5AD21003969B1 /* huffman.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A90FEEA01AC5AD21003969B1 /* huffman.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,6 +28,17 @@
 /* Begin PBXFileReference section */
 		A90FEE891AC5ACE3003969B1 /* 210-5.6 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "210-5.6"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A90FEE8C1AC5ACE3003969B1 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		A90FEE931AC5AD0E003969B1 /* book.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = book.h; sourceTree = "<group>"; };
+		A90FEE941AC5AD0E003969B1 /* Comparator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Comparator.cpp; sourceTree = "<group>"; };
+		A90FEE951AC5AD0E003969B1 /* Comparator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Comparator.h; sourceTree = "<group>"; };
+		A90FEE961AC5AD0E003969B1 /* heap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = heap.h; sourceTree = "<group>"; };
+		A90FEE981AC5AD0E003969B1 /* Object.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Object.cpp; sourceTree = "<group>"; };
+		A90FEE991AC5AD0E003969B1 /* Object.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Object.h; sourceTree = "<group>"; };
+		A90FEE9A1AC5AD0E003969B1 /* PriorityQueue.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PriorityQueue.cpp; sourceTree = "<group>"; };
+		A90FEE9B1AC5AD0E003969B1 /* PriorityQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PriorityQueue.h; sourceTree = "<group>"; };
+		A90FEEA01AC5AD21003969B1 /* huffman.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = huffman.cpp; sourceTree = "<group>"; };
+		A90FEEA21AC5AD4F003969B1 /* huffnode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = huffnode.h; sourceTree = "<group>"; };
+		A90FEEA31AC5AD71003969B1 /* hufftree.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = hufftree.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -41,6 +55,17 @@
 		A90FEE801AC5ACE3003969B1 = {
 			isa = PBXGroup;
 			children = (
+				A90FEEA01AC5AD21003969B1 /* huffman.cpp */,
+				A90FEEA31AC5AD71003969B1 /* hufftree.h */,
+				A90FEEA21AC5AD4F003969B1 /* huffnode.h */,
+				A90FEE931AC5AD0E003969B1 /* book.h */,
+				A90FEE941AC5AD0E003969B1 /* Comparator.cpp */,
+				A90FEE951AC5AD0E003969B1 /* Comparator.h */,
+				A90FEE961AC5AD0E003969B1 /* heap.h */,
+				A90FEE981AC5AD0E003969B1 /* Object.cpp */,
+				A90FEE991AC5AD0E003969B1 /* Object.h */,
+				A90FEE9A1AC5AD0E003969B1 /* PriorityQueue.cpp */,
+				A90FEE9B1AC5AD0E003969B1 /* PriorityQueue.h */,
 				A90FEE8B1AC5ACE3003969B1 /* 210-5.6 */,
 				A90FEE8A1AC5ACE3003969B1 /* Products */,
 			);
@@ -118,7 +143,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A90FEE8D1AC5ACE3003969B1 /* main.cpp in Sources */,
+				A90FEE9C1AC5AD0E003969B1 /* Comparator.cpp in Sources */,
+				A90FEE9E1AC5AD0E003969B1 /* Object.cpp in Sources */,
+				A90FEE9F1AC5AD0E003969B1 /* PriorityQueue.cpp in Sources */,
+				A90FEEA11AC5AD21003969B1 /* huffman.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
