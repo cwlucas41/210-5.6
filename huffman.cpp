@@ -19,6 +19,9 @@
 // In contrast, see huffman1 which implements a composite design.
 
 #include "book.h"
+#include "PriorityQueue.cpp"
+#include "Comparator.cpp"
+#include "Object.cpp"
 
 #include <cstdio>
 #include <cstring>
@@ -130,19 +133,39 @@ int read_freqs(CodeTable<char>* ct, FILE* fp)
 // Build a Huffman tree from a collection of frequencies
 template <typename E> HuffTree<E>*
 buildHuff(HuffTree<E>** TreeArray, int count) {
-  heap<HuffTree<E>*,minTreeComp>* forest =
-    new heap<HuffTree<E>*, minTreeComp>(TreeArray,
-                                        count, count); 
-  HuffTree<char> *temp1, *temp2, *temp3 = NULL;
-  while (forest->size() > 1) {
-    temp1 = forest->removefirst();   // Pull first two trees  
-    temp2 = forest->removefirst();   //   off the list
-    temp3 = new HuffTree<E>(temp1, temp2);
-    forest->insert(temp3);  // Put the new tree back on list
-    delete temp1;        // Must delete the remnants
-    delete temp2;        //   of the trees we created
-  }
-  return temp3;
+	
+	Object<HuffTree<E>*,int>* h = new Object<HuffTree<E>*,int>[count];
+	
+	for (int i = 0; i < count; i++) {
+		h[i] = Object<HuffTree<E>*, int>(TreeArray[i],TreeArray[i]->weight());
+	}
+	
+	PriorityQueue<HuffTree<E>*, int, ObjectMinCompare<HuffTree<E>*, int>> forest = PriorityQueue<HuffTree<E>*, int, ObjectMinCompare<HuffTree<E>*, int>>(h, count, count);
+	
+	HuffTree<char> *temp1, *temp2, *temp3 = NULL;
+	while (forest.size() > 1) {
+		temp1 = forest.dequeue().getID();   // Pull first two trees
+		temp2 = forest.dequeue().getID();   //   off the list
+		temp3 = new HuffTree<E>(temp1, temp2);
+		forest.enqueue(Object<HuffTree<E>*, int>(temp3,temp3->weight()));  // Put the new tree back on list
+		delete temp1;        // Must delete the remnants
+		delete temp2;        //   of the trees we created
+	}
+	return temp3;
+	
+//  heap<HuffTree<E>*,minTreeComp>* forest =
+//    new heap<HuffTree<E>*, minTreeComp>(TreeArray,
+//                                        count, count); 
+//  HuffTree<char> *temp1, *temp2, *temp3 = NULL;
+//  while (forest->size() > 1) {
+//    temp1 = forest->removefirst();   // Pull first two trees  
+//    temp2 = forest->removefirst();   //   off the list
+//    temp3 = new HuffTree<E>(temp1, temp2);
+//    forest->insert(temp3);  // Put the new tree back on list
+//    delete temp1;        // Must delete the remnants
+//    delete temp2;        //   of the trees we created
+//  }
+//  return temp3;
 }
 
 

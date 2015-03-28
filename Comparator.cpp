@@ -10,6 +10,6 @@
 
 template<typename idType, typename priorityType>
 bool ObjectMinCompare<idType,priorityType>::prior(Object<idType, priorityType> a, Object<idType, priorityType> b) {
-	return (a.getPriority() > b.getPriority());
+	return (a.getPriority() < b.getPriority());
 }
 
