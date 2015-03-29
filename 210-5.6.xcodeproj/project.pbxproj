@@ -7,10 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		A90FEE9C1AC5AD0E003969B1 /* Comparator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A90FEE941AC5AD0E003969B1 /* Comparator.cpp */; };
-		A90FEE9E1AC5AD0E003969B1 /* Object.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A90FEE981AC5AD0E003969B1 /* Object.cpp */; };
-		A90FEE9F1AC5AD0E003969B1 /* PriorityQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A90FEE9A1AC5AD0E003969B1 /* PriorityQueue.cpp */; };
-		A90FEEA11AC5AD21003969B1 /* huffman.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A90FEEA01AC5AD21003969B1 /* huffman.cpp */; };
+		A91EAB701AC8376D00F09757 /* Comparator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A91EAB651AC8376D00F09757 /* Comparator.cpp */; };
+		A91EAB711AC8376D00F09757 /* huffman.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A91EAB681AC8376D00F09757 /* huffman.cpp */; };
+		A91EAB731AC8376D00F09757 /* Object.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A91EAB6C1AC8376D00F09757 /* Object.cpp */; };
+		A91EAB741AC8376D00F09757 /* PriorityQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A91EAB6E1AC8376D00F09757 /* PriorityQueue.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -27,17 +27,23 @@
 
 /* Begin PBXFileReference section */
 		A90FEE891AC5ACE3003969B1 /* 210-5.6 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "210-5.6"; sourceTree = BUILT_PRODUCTS_DIR; };
-		A90FEE931AC5AD0E003969B1 /* book.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = book.h; path = ../book.h; sourceTree = "<group>"; };
-		A90FEE941AC5AD0E003969B1 /* Comparator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Comparator.cpp; path = ../Comparator.cpp; sourceTree = "<group>"; };
-		A90FEE951AC5AD0E003969B1 /* Comparator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Comparator.h; path = ../Comparator.h; sourceTree = "<group>"; };
-		A90FEE961AC5AD0E003969B1 /* heap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = heap.h; path = ../heap.h; sourceTree = "<group>"; };
-		A90FEE981AC5AD0E003969B1 /* Object.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Object.cpp; path = ../Object.cpp; sourceTree = "<group>"; };
-		A90FEE991AC5AD0E003969B1 /* Object.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Object.h; path = ../Object.h; sourceTree = "<group>"; };
-		A90FEE9A1AC5AD0E003969B1 /* PriorityQueue.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = PriorityQueue.cpp; path = ../PriorityQueue.cpp; sourceTree = "<group>"; };
-		A90FEE9B1AC5AD0E003969B1 /* PriorityQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PriorityQueue.h; path = ../PriorityQueue.h; sourceTree = "<group>"; };
-		A90FEEA01AC5AD21003969B1 /* huffman.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = huffman.cpp; path = ../huffman.cpp; sourceTree = "<group>"; };
-		A90FEEA21AC5AD4F003969B1 /* huffnode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = huffnode.h; path = ../huffnode.h; sourceTree = "<group>"; };
-		A90FEEA31AC5AD71003969B1 /* hufftree.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = hufftree.h; path = ../hufftree.h; sourceTree = "<group>"; };
+		A91EAB641AC8376D00F09757 /* book.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = book.h; sourceTree = SOURCE_ROOT; };
+		A91EAB651AC8376D00F09757 /* Comparator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Comparator.cpp; sourceTree = SOURCE_ROOT; };
+		A91EAB661AC8376D00F09757 /* Comparator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Comparator.h; sourceTree = SOURCE_ROOT; };
+		A91EAB671AC8376D00F09757 /* heap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = heap.h; sourceTree = SOURCE_ROOT; };
+		A91EAB681AC8376D00F09757 /* huffman.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = huffman.cpp; sourceTree = SOURCE_ROOT; };
+		A91EAB691AC8376D00F09757 /* huffnode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = huffnode.h; sourceTree = SOURCE_ROOT; };
+		A91EAB6A1AC8376D00F09757 /* hufftree.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = hufftree.h; sourceTree = SOURCE_ROOT; };
+		A91EAB6C1AC8376D00F09757 /* Object.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Object.cpp; sourceTree = SOURCE_ROOT; };
+		A91EAB6D1AC8376D00F09757 /* Object.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Object.h; sourceTree = SOURCE_ROOT; };
+		A91EAB6E1AC8376D00F09757 /* PriorityQueue.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PriorityQueue.cpp; sourceTree = SOURCE_ROOT; };
+		A91EAB6F1AC8376D00F09757 /* PriorityQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PriorityQueue.h; sourceTree = SOURCE_ROOT; };
+		A91EAB751AC8387B00F09757 /* alpha.huff */ = {isa = PBXFileReference; lastKnownFileType = text; path = alpha.huff; sourceTree = SOURCE_ROOT; };
+		A91EAB761AC8387B00F09757 /* huff.huff */ = {isa = PBXFileReference; lastKnownFileType = text; path = huff.huff; sourceTree = SOURCE_ROOT; };
+		A91EAB771AC8387B00F09757 /* huffbook.huff */ = {isa = PBXFileReference; lastKnownFileType = text; path = huffbook.huff; sourceTree = SOURCE_ROOT; };
+		A91EAB781AC8387B00F09757 /* huffex.huff */ = {isa = PBXFileReference; lastKnownFileType = text; path = huffex.huff; sourceTree = SOURCE_ROOT; };
+		A91EAB791AC8387B00F09757 /* huffex2.huff */ = {isa = PBXFileReference; lastKnownFileType = text; path = huffex2.huff; sourceTree = SOURCE_ROOT; };
+		A91EAB7A1AC8387B00F09757 /* hufftest.huff */ = {isa = PBXFileReference; lastKnownFileType = text; path = hufftest.huff; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,19 +76,41 @@
 		A90FEE8B1AC5ACE3003969B1 /* 210-5.6 */ = {
 			isa = PBXGroup;
 			children = (
-				A90FEEA01AC5AD21003969B1 /* huffman.cpp */,
-				A90FEEA31AC5AD71003969B1 /* hufftree.h */,
-				A90FEEA21AC5AD4F003969B1 /* huffnode.h */,
-				A90FEE931AC5AD0E003969B1 /* book.h */,
-				A90FEE941AC5AD0E003969B1 /* Comparator.cpp */,
-				A90FEE951AC5AD0E003969B1 /* Comparator.h */,
-				A90FEE961AC5AD0E003969B1 /* heap.h */,
-				A90FEE981AC5AD0E003969B1 /* Object.cpp */,
-				A90FEE991AC5AD0E003969B1 /* Object.h */,
-				A90FEE9A1AC5AD0E003969B1 /* PriorityQueue.cpp */,
-				A90FEE9B1AC5AD0E003969B1 /* PriorityQueue.h */,
+				A91EAB7C1AC838AE00F09757 /* huffman */,
+				A91EAB7B1AC8388F00F09757 /* huff files */,
 			);
 			path = "210-5.6";
+			sourceTree = "<group>";
+		};
+		A91EAB7B1AC8388F00F09757 /* huff files */ = {
+			isa = PBXGroup;
+			children = (
+				A91EAB751AC8387B00F09757 /* alpha.huff */,
+				A91EAB761AC8387B00F09757 /* huff.huff */,
+				A91EAB771AC8387B00F09757 /* huffbook.huff */,
+				A91EAB781AC8387B00F09757 /* huffex.huff */,
+				A91EAB791AC8387B00F09757 /* huffex2.huff */,
+				A91EAB7A1AC8387B00F09757 /* hufftest.huff */,
+			);
+			name = "huff files";
+			sourceTree = "<group>";
+		};
+		A91EAB7C1AC838AE00F09757 /* huffman */ = {
+			isa = PBXGroup;
+			children = (
+				A91EAB681AC8376D00F09757 /* huffman.cpp */,
+				A91EAB641AC8376D00F09757 /* book.h */,
+				A91EAB691AC8376D00F09757 /* huffnode.h */,
+				A91EAB6A1AC8376D00F09757 /* hufftree.h */,
+				A91EAB671AC8376D00F09757 /* heap.h */,
+				A91EAB661AC8376D00F09757 /* Comparator.h */,
+				A91EAB651AC8376D00F09757 /* Comparator.cpp */,
+				A91EAB6D1AC8376D00F09757 /* Object.h */,
+				A91EAB6C1AC8376D00F09757 /* Object.cpp */,
+				A91EAB6F1AC8376D00F09757 /* PriorityQueue.h */,
+				A91EAB6E1AC8376D00F09757 /* PriorityQueue.cpp */,
+			);
+			name = huffman;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -141,10 +169,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A90FEE9C1AC5AD0E003969B1 /* Comparator.cpp in Sources */,
-				A90FEE9E1AC5AD0E003969B1 /* Object.cpp in Sources */,
-				A90FEE9F1AC5AD0E003969B1 /* PriorityQueue.cpp in Sources */,
-				A90FEEA11AC5AD21003969B1 /* huffman.cpp in Sources */,
+				A91EAB701AC8376D00F09757 /* Comparator.cpp in Sources */,
+				A91EAB711AC8376D00F09757 /* huffman.cpp in Sources */,
+				A91EAB731AC8376D00F09757 /* Object.cpp in Sources */,
+				A91EAB741AC8376D00F09757 /* PriorityQueue.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

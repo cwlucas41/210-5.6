@@ -173,8 +173,7 @@ void decode(HuffTree<char>* theTree, char* code, char& msg, int& cnt) {
   msg = ((LeafNode<char>*)currnode)->val();
 }
 
-void buildcode(HuffNode<char>* root, CodeTable<char>* ct,
-	       char* prefix, int level, double& total) {
+void buildcode(HuffNode<char>* root, CodeTable<char>* ct, char* prefix, int level, double& total) {
   if (root->isLeaf()) {
     cout << ((LeafNode<char>*)root)->val() << "\t" << prefix << "\n";
     strcpy(ct->getcode(((LeafNode<char>*)root)->val()), prefix);
