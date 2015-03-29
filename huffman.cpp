@@ -22,7 +22,7 @@
 #include "PriorityQueue.cpp"
 #include "Comparator.cpp"
 #include "Object.cpp"
-#include <wchar.h>
+#include <cmath>
 #include <cstdio>
 #include <cstring>
 
@@ -110,7 +110,7 @@ PriorityQueue<HuffTree<char>*, int, ObjectMinCompare<HuffTree<char>*, int>> read
 	int count = atoi(ptr);
 	
 	Object<HuffTree<char>*,int>* objectArray = new Object<HuffTree<char>*,int>[count];
-	PriorityQueue<HuffTree<char>*, int, ObjectMinCompare<HuffTree<char>*, int>> forest = PriorityQueue<HuffTree<char>*, int, ObjectMinCompare<HuffTree<char>*, int>>(objectArray, count, count);
+	PriorityQueue<HuffTree<char>*, int, ObjectMinCompare<HuffTree<char>*, int>> forest = PriorityQueue<HuffTree<char>*, int, ObjectMinCompare<HuffTree<char>*, int>>(objectArray, 0, count);
 	
 	for (int i=0; i<count; i++) { // Read in the frequencies
 		Assert(fgets(buff, 99, fp) != NULL, "Ran out of codes too early");  // Read the next entry
@@ -173,21 +173,22 @@ void decode(HuffTree<char>* theTree, char* code, char& msg, int& cnt) {
   msg = ((LeafNode<char>*)currnode)->val();
 }
 
-void buildcode(HuffNode<char>* root, CodeTable<char>* ct, char* prefix, int level, double& total) {
-  if (root->isLeaf()) {
-    cout << ((LeafNode<char>*)root)->val() << "\t" << prefix << "\n";
-    strcpy(ct->getcode(((LeafNode<char>*)root)->val()), prefix);
-    total += level * root->weight();
-  }
-  else {
-    prefix[level] = '0';
-    prefix[level+1] = '\0';
-    buildcode(((IntlNode<char>*)root)->left(), ct, prefix, level+1, total);
-    prefix[level] = '1';
-    prefix[level+1] = '\0';
-    buildcode(((IntlNode<char>*)root)->right(), ct, prefix, level+1, total);
-    prefix[level] = '\0';
-  }
+void buildcode(HuffNode<char>* root, int totalWeight, CodeTable<char>* ct, char* prefix, int level, double& total, double& entropy) {
+	if (root->isLeaf()) {
+		cout << ((LeafNode<char>*)root)->val() << "\t" << prefix << "\n";
+		strcpy(ct->getcode(((LeafNode<char>*)root)->val()), prefix);
+		total += level * root->weight();
+		entropy -= log2(float(root->weight())/totalWeight)*(float(root->weight())/totalWeight);
+	}
+	else {
+		prefix[level] = '0';
+		prefix[level+1] = '\0';
+		buildcode(((IntlNode<char>*)root)->left(), totalWeight, ct, prefix, level+1, total, entropy);
+		prefix[level] = '1';
+		prefix[level+1] = '\0';
+		buildcode(((IntlNode<char>*)root)->right(), totalWeight, ct, prefix, level+1, total, entropy);
+		prefix[level] = '\0';
+	}
 }
 
 
@@ -230,6 +231,7 @@ int main(int argc, char** argv) {
 	char prefix[MAXCODELEN+1];
 	// total is used to calculate the average code length
 	double total = 0;
+	double entropy = 0;
 	FILE *fp;  // The file pointer
 
 	// Check command line parameter for frequency file
@@ -249,8 +251,9 @@ int main(int argc, char** argv) {
 
 	// Now, output the tree, which also creates the code table.
 	cout << "Output the tree\n";
-	buildcode(theTree->root(), theTable, prefix, 0, total);
-	cout << "Average code length is " << total/(double)theTree->weight() << "\n";
+	buildcode(theTree->root(), theTree->root()->weight(), theTable, prefix, 0, total, entropy);
+	cout << "Average code length is:\t\t" << total/(double)theTree->weight() << "\n";
+	cout << "Entropy of code is:\t\t\t" << entropy << "\n";
 
 	// Finally, do the encode/decode commands to test the system.
 	do_commands(theTree, theTable, fp);
