@@ -23,6 +23,7 @@
 #include "Comparator.cpp"
 #include "Object.cpp"
 #include <cmath>
+#include <wchar.h>
 #include <cstdio>
 #include <cstring>
 
@@ -102,6 +103,7 @@ PriorityQueue<HuffTree<char>*, int, ObjectMinCompare<HuffTree<char>*, int>> read
 	char *ptr;
 	char *ptr2;
 	int freq;
+	size_t length;
 
 	Assert(fgets(buff, 99, fp) != NULL,   // Read number of chars
 		   "Couldn't read character count");
@@ -126,6 +128,7 @@ PriorityQueue<HuffTree<char>*, int, ObjectMinCompare<HuffTree<char>*, int>> read
 		for (ptr++; *ptr==' '; ptr++);
 		Assert(isdigit(*ptr) != 0, "Must be a digit here.");
 		freq = atoi(ptr);
+		length = strlen(buff2);
 		ct->addobject(buff2[0]);
 		forest.enqueue(Object<HuffTree<char>*,int>(new HuffTree<char>(buff2[0], freq), freq));
 	}
@@ -145,20 +148,6 @@ HuffTree<char>* buildHuff(PriorityQueue<HuffTree<char>*, int, ObjectMinCompare<H
 		delete temp2;        //   of the trees we created
 	}
 	return temp3;
-	
-//  heap<HuffTree<E>*,minTreeComp>* forest =
-//    new heap<HuffTree<E>*, minTreeComp>(TreeArray,
-//                                        count, count); 
-//  HuffTree<char> *temp1, *temp2, *temp3 = NULL;
-//  while (forest->size() > 1) {
-//    temp1 = forest->removefirst();   // Pull first two trees  
-//    temp2 = forest->removefirst();   //   off the list
-//    temp3 = new HuffTree<E>(temp1, temp2);
-//    forest->insert(temp3);  // Put the new tree back on list
-//    delete temp1;        // Must delete the remnants
-//    delete temp2;        //   of the trees we created
-//  }
-//  return temp3;
 }
 
 
@@ -168,7 +157,7 @@ void decode(HuffTree<char>* theTree, char* code, char& msg, int& cnt) {
     cnt++;
     if (code[cnt-1] == '0') currnode = ((IntlNode<char>*)currnode)->left();
     else if (code[cnt-1] == '1') currnode = ((IntlNode<char>*)currnode)->right();
-    else Assert(false, "Bad code character");
+	else Assert(false, "Bad code character");
   }
   msg = ((LeafNode<char>*)currnode)->val();
 }
@@ -252,8 +241,8 @@ int main(int argc, char** argv) {
 	// Now, output the tree, which also creates the code table.
 	cout << "Output the tree\n";
 	buildcode(theTree->root(), theTree->root()->weight(), theTable, prefix, 0, total, entropy);
-	cout << "Average code length is:\t\t" << total/(double)theTree->weight() << "\n";
-	cout << "Entropy of code is:\t\t\t" << entropy << "\n";
+	cout << "Average code length is:\t\t" << total/(double)theTree->weight() << " bits\n";
+	cout << "Entropy of code is:\t\t\t" << entropy << " Sh\n";
 
 	// Finally, do the encode/decode commands to test the system.
 	do_commands(theTree, theTable, fp);
