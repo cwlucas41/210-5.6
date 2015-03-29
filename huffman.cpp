@@ -224,38 +224,37 @@ void do_commands(HuffTree<char>* theTree,
 
 // Driver for testing Huffman tree code
 int main(int argc, char** argv) {
-  // This will be the eventual Huffman tree
-  HuffTree<char>* theTree;
-  CodeTable<char>* theTable =
-	   new CodeTable<char>(CODETABLELEN);
-  // Working storage for the tree traversal that builds the code table
-  char prefix[MAXCODELEN+1];
-  // total is used to calculate the average code length
-  double total = 0;
-  FILE *fp;  // The file pointer
+	// This will be the eventual Huffman tree
+	HuffTree<char>* theTree;
+	CodeTable<char>* theTable = new CodeTable<char>(CODETABLELEN);
+	// Working storage for the tree traversal that builds the code table
+	char prefix[MAXCODELEN+1];
+	// total is used to calculate the average code length
+	double total = 0;
+	FILE *fp;  // The file pointer
 
-  // Check command line parameter for frequency file
-  Assert(argc == 2, "Usage: huffman <frequency file>");
-  Assert((fp = fopen(argv[1], "rt")) != NULL, "No such file");
+	// Check command line parameter for frequency file
+	Assert(argc == 2, "Usage: huffman <frequency file>");
+	Assert((fp = fopen(argv[1], "rt")) != NULL, "No such file");
 
-  // Now, read in the list of frequencies, and initialize the
-  //   forest of Huffman trees.
-  cout << "Read frequencies\n";
-  PriorityQueue<HuffTree<char>*, int, ObjectMinCompare<HuffTree<char>*, int>> forest = read_freqs(theTable, fp);
+	// Now, read in the list of frequencies, and initialize the
+	//   forest of Huffman trees.
+	cout << "Read frequencies\n";
+	PriorityQueue<HuffTree<char>*, int, ObjectMinCompare<HuffTree<char>*, int>> forest = read_freqs(theTable, fp);
 
-  //  forest->print();
+	//  forest->print();
 
-  // Now, build the tree.
-  cout << "Build the tree\n";
-  theTree = buildHuff(forest);
+	// Now, build the tree.
+	cout << "Build the tree\n";
+	theTree = buildHuff(forest);
 
-  // Now, output the tree, which also creates the code table.
-  cout << "Output the tree\n";
-  buildcode(theTree->root(), theTable, prefix, 0, total);
-  cout << "Average code length is "
-       << total/(double)theTree->weight() << "\n";
+	// Now, output the tree, which also creates the code table.
+	cout << "Output the tree\n";
+	buildcode(theTree->root(), theTable, prefix, 0, total);
+	cout << "Average code length is " << total/(double)theTree->weight() << "\n";
 
-  // Finally, do the encode/decode commands to test the system.
-  do_commands(theTree, theTable, fp);
-  return 0;
+	// Finally, do the encode/decode commands to test the system.
+	do_commands(theTree, theTable, fp);
+	fclose(fp);
+	return 0;
 }
