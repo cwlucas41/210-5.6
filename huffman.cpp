@@ -22,7 +22,7 @@
 #include "PriorityQueue.cpp"
 #include "Comparator.cpp"
 #include "Object.cpp"
-
+#include <wchar.h>
 #include <cstdio>
 #include <cstring>
 
@@ -80,9 +80,6 @@ ostream& operator << (ostream& s, HuffNode<E>* z)
 
 #include "hufftree.h"
 
-// Space for the heap's array
-HuffTree<char>** TreeArray = NULL;
-
 // Overload for the HuffTree << operator
 template <typename E>
 ostream& operator << (ostream& s, HuffTree<E>* z)
@@ -97,57 +94,53 @@ public:
 
 // Read the list of frequencies, make the forest, and set the
 // list of entries into the code table.
-int read_freqs(CodeTable<char>* ct, FILE* fp)
+PriorityQueue<HuffTree<char>*, int, ObjectMinCompare<HuffTree<char>*, int>> read_freqs(CodeTable<char>* ct, FILE* fp)
 { // Read a list of strings and frequencies from standard input,
-  // building a list of Huffman coding tree nodes
-  char buff[100];
-  char buff2[100];
-  char *ptr;
-  char *ptr2;
-  int freq;
+	// building a list of Huffman coding tree nodes
+	char buff[100];
+	char buff2[100];
+	char *ptr;
+	char *ptr2;
+	int freq;
 
-  Assert(fgets(buff, 99, fp) != NULL,   // Read number of chars
-           "Couldn't read character count");
-  ptr = buff;
-  Assert(isdigit(*ptr) != 0, "Must be a digit here.");
-  int count = atoi(ptr);
-  TreeArray = new HuffTree<char>*[count];
-  for (int i=0; i<count; i++) { // Read in the frequencies
-    Assert(fgets(buff, 99, fp) != NULL,
- 	   "Ran out of codes too early");  // Read the next entry
-    // process the entry, creating a new HuffTree
-    for(ptr=buff; *ptr==' '; ptr++);  // Read first word
-    Assert(*ptr == '"', "First char was not a quote mark.");
-    for (ptr2=buff2,ptr++; *ptr!='"'; ptr++)
-      *ptr2++ = *ptr;
-    *ptr2 = '\0'; // End of string
-    for (ptr++; *ptr==' '; ptr++);
-    Assert(isdigit(*ptr) != 0, "Must be a digit here.");
-    freq = atoi(ptr);
-    ct->addobject(buff2[0]);
-    TreeArray[i] = new HuffTree<char>(buff2[0], freq);
-  }
-  return count;
+	Assert(fgets(buff, 99, fp) != NULL,   // Read number of chars
+		   "Couldn't read character count");
+	ptr = buff;
+	Assert(isdigit(*ptr) != 0, "Must be a digit here.");
+	int count = atoi(ptr);
+	
+	Object<HuffTree<char>*,int>* objectArray = new Object<HuffTree<char>*,int>[count];
+	PriorityQueue<HuffTree<char>*, int, ObjectMinCompare<HuffTree<char>*, int>> forest = PriorityQueue<HuffTree<char>*, int, ObjectMinCompare<HuffTree<char>*, int>>(objectArray, count, count);
+	
+	for (int i=0; i<count; i++) { // Read in the frequencies
+		Assert(fgets(buff, 99, fp) != NULL, "Ran out of codes too early");  // Read the next entry
+		
+		// process the entry, creating a new HuffTree
+		for(ptr=buff; *ptr==' '; ptr++);  // Read first word
+		Assert(*ptr == '"', "First char was not a quote mark.");
+		
+		for (ptr2=buff2,ptr++; *ptr!='"'; ptr++)
+		  *ptr2++ = *ptr;
+		*ptr2 = '\0'; // End of string
+		
+		for (ptr++; *ptr==' '; ptr++);
+		Assert(isdigit(*ptr) != 0, "Must be a digit here.");
+		freq = atoi(ptr);
+		ct->addobject(buff2[0]);
+		forest.enqueue(Object<HuffTree<char>*,int>(new HuffTree<char>(buff2[0], freq), freq));
+	}
+	return forest;
 }
 
 // Build a Huffman tree from a collection of frequencies
-template <typename E> HuffTree<E>*
-buildHuff(HuffTree<E>** TreeArray, int count) {
-	
-	Object<HuffTree<E>*,int>* h = new Object<HuffTree<E>*,int>[count];
-	
-	for (int i = 0; i < count; i++) {
-		h[i] = Object<HuffTree<E>*, int>(TreeArray[i],TreeArray[i]->weight());
-	}
-	
-	PriorityQueue<HuffTree<E>*, int, ObjectMinCompare<HuffTree<E>*, int>> forest = PriorityQueue<HuffTree<E>*, int, ObjectMinCompare<HuffTree<E>*, int>>(h, count, count);
+HuffTree<char>* buildHuff(PriorityQueue<HuffTree<char>*, int, ObjectMinCompare<HuffTree<char>*, int>> forest) {
 	
 	HuffTree<char> *temp1, *temp2, *temp3 = NULL;
 	while (forest.size() > 1) {
 		temp1 = forest.dequeue().getID();   // Pull first two trees
 		temp2 = forest.dequeue().getID();   //   off the list
-		temp3 = new HuffTree<E>(temp1, temp2);
-		forest.enqueue(Object<HuffTree<E>*, int>(temp3,temp3->weight()));  // Put the new tree back on list
+		temp3 = new HuffTree<char>(temp1, temp2);
+		forest.enqueue(Object<HuffTree<char>*, int>(temp3,temp3->weight()));  // Put the new tree back on list
 		delete temp1;        // Must delete the remnants
 		delete temp2;        //   of the trees we created
 	}
@@ -248,13 +241,13 @@ int main(int argc, char** argv) {
   // Now, read in the list of frequencies, and initialize the
   //   forest of Huffman trees.
   cout << "Read frequencies\n";
-  int count = read_freqs(theTable, fp);
+  PriorityQueue<HuffTree<char>*, int, ObjectMinCompare<HuffTree<char>*, int>> forest = read_freqs(theTable, fp);
 
   //  forest->print();
 
   // Now, build the tree.
   cout << "Build the tree\n";
-  theTree = buildHuff<char>(TreeArray, count);
+  theTree = buildHuff(forest);
 
   // Now, output the tree, which also creates the code table.
   cout << "Output the tree\n";
