@@ -36,7 +36,7 @@ bool Object<I,P>::operator==(Object other){
 
 template<typename I, typename P>
 std::ostream& operator<<(std::ostream& out, Object<I, P> obj){
-	out << "objectID is: " << obj.getID();
+	out << "objectID is: " << obj.getID() << std::endl;
 	return out;
 }
 

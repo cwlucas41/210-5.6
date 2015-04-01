@@ -10,29 +10,28 @@
 #define ___10_5_5__PriorityQueue__
 
 #include <stdio.h>
-#include "Comparator.h"
 #include "Object.h"
 #include "heap.h"
 
-template<typename idType, typename priorityType, typename Comp>
+template<typename idType, typename priorityType, typename Comp, typename Object>
 class PriorityQueue {
 private:
-	heap<Object<idType,priorityType>, Comp> Heap;
+	heap<Object, Comp> maxHeap;
 	
 public:
-	PriorityQueue(Object<idType,priorityType>* h, int num, int max);
+	PriorityQueue(Object* h, int num, int max);
 	
 	//enqueues a new object
-	void enqueue(Object<idType, priorityType>);
+	void enqueue(Object);
 	
 	//removes and returns the object with highest priority
-	Object<idType, priorityType> dequeue();
+	Object dequeue();
 	
 	//parameter: instance of Object class
 	//changes the weight of all Objects with the same ID as the paramater object to the weight of the paramater object
 	void changeWeight(idType,priorityType);
 	
-	int size();
+	int size() const;
 };
 
 

@@ -13,10 +13,10 @@
 #include "Object.cpp"
 using namespace std;
 
-template<typename idType, typename priorityType>
+template<typename Object>
 class ObjectMinCompare {
 public:
 	// templated argument is the objectID type, not
-	static bool prior(Object<idType, priorityType> a, Object<idType, priorityType> b);
+	static bool prior(Object a, Object b);
 };
 #endif /* defined(___10_5_5__Comparator__) */

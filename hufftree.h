@@ -5,6 +5,12 @@
 
 // HuffTree is a template of two parameters: the element
 //  type being coded and a comparator for two such elements.
+
+#ifndef __huffTree__
+#define __huffTree__
+
+#include "huffnode.h"
+
 template <typename E>
 class HuffTree {
 private:
@@ -19,3 +25,5 @@ public:
   HuffNode<E>* root() { return Root; }    // Get root
   int weight() { return Root->weight(); } // Root weight
 };
+
+#endif
