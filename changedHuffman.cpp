@@ -87,7 +87,6 @@ ostream& operator << (ostream& s, HuffTree<E>* z)
 
 // Read the list of frequencies, make the forest, and set the
 // list of entries into the code table.
-//PriorityQueue<HuffTree<char>*, int, ObjectMinCompare<HuffTree<char>*, int>> read_freqs(CodeTable<char>* ct, FILE* fp)
 PriorityQueue__HuffTreeIntMin<char> read_freqs(CodeTable<char>* ct, FILE* fp)
 { // Read a list of strings and frequencies from standard input,
 	// building a list of Huffman coding tree nodes

@@ -12,7 +12,7 @@
 #include "PriorityQueue.cpp"
 
 template<typename T>
-PriorityQueue__HuffTreeIntMin<T>::PriorityQueue__HuffTreeIntMin(Object__HuffTreeInt<T>* h, int num, int max) : pq(PriorityQueue<HuffTree<T>*, int, ObjectMinCompare<Object__HuffTreeInt<T>>, Object__HuffTreeInt<T>>(h, num, max)){}
+PriorityQueue__HuffTreeIntMin<T>::PriorityQueue__HuffTreeIntMin(Object__HuffTreeInt<T>* h, int num, int max) : pq(PriorityQueue<HuffTree<T>*, int, ObjectMinCompare<Object__HuffTreeInt<T> >, Object__HuffTreeInt<T> >(h, num, max)){}
 
 template<typename T>
 void PriorityQueue__HuffTreeIntMin<T>::enqueue(Object__HuffTreeInt<T> object){

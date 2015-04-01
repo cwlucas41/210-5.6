@@ -18,7 +18,7 @@ template<typename T>
 class PriorityQueue__HuffTreeIntMin {
 private:
 	
-	PriorityQueue<HuffTree<T>*, int, ObjectMinCompare<Object__HuffTreeInt<T>>, Object__HuffTreeInt<T>> pq;
+	PriorityQueue<HuffTree<T>*, int, ObjectMinCompare<Object__HuffTreeInt<T> >, Object__HuffTreeInt<T> > pq;
 	
 public:
 	
