@@ -6,33 +6,36 @@
 //  Copyright (c) 2015 CWL. All rights reserved.
 //
 
+#ifndef __PriorityQueuecpp__
+#define __PriorityQueuecpp__
+
 #include "PriorityQueue.h"
 #include "Object.h"
 
-template<typename idType, typename priorityType, typename Comp>
-PriorityQueue<idType,priorityType,Comp>::PriorityQueue(Object<idType, priorityType>* h, int num, int max) : Heap(heap<Object<idType, priorityType>, Comp>(h, num, max)){}
+template<typename idType, typename priorityType, typename Comp, typename Object>
+PriorityQueue<idType,priorityType,Comp,Object>::PriorityQueue(Object* h, int num, int max) : maxHeap(heap<Object, Comp>(h, num, max)){}
 
-template<typename idType, typename priorityType, typename Comp>
-void PriorityQueue<idType,priorityType,Comp>::enqueue(Object<idType, priorityType> obj){
-	Heap.insert(obj);
+template<typename idType, typename priorityType, typename Comp, typename Object>
+void PriorityQueue<idType,priorityType,Comp,Object>::enqueue(Object obj){
+	maxHeap.insert(obj);
 }
 
-template<typename idType, typename priorityType, typename Comp>
-Object<idType, priorityType> PriorityQueue<idType,priorityType,Comp>::dequeue() {
-	return Heap.removefirst();
+template<typename idType, typename priorityType, typename Comp, typename Object>
+Object PriorityQueue<idType,priorityType,Comp,Object>::dequeue() {
+	return maxHeap.removefirst();
 }
 
-template<typename idType, typename priorityType, typename Comp>
-void PriorityQueue<idType,priorityType,Comp>::changeWeight(idType ident, priorityType priority){
+template<typename idType, typename priorityType, typename Comp, typename Object>
+void PriorityQueue<idType,priorityType,Comp,Object>::changeWeight(idType ident, priorityType priority){
 	
-	Object<idType, priorityType>* listOfAllObjects = new Object<idType, priorityType>[Heap.size()];
+	Object* listOfAllObjects = new Object[maxHeap.size()];
 	
-	int size = Heap.size();
+	int size = maxHeap.size();
 	bool changedAny = 0;
 	for (int i = 0; i < size; i++) {
-		Object<idType, priorityType> obj = Heap.removefirst();
+		Object obj = maxHeap.removefirst();
 		if (obj.getID()==ident) {
-			obj = Object<idType, priorityType>(ident, priority);
+			obj = Object(ident, priority);
 			changedAny = 1;
 		}
 		listOfAllObjects[i] = obj;
@@ -43,13 +46,15 @@ void PriorityQueue<idType,priorityType,Comp>::changeWeight(idType ident, priorit
 	}
 	
 	for (int i = 0; i < size; i++) {
-		Heap.insert(listOfAllObjects[i]);
+		maxHeap.insert(listOfAllObjects[i]);
 	}
 	
 	delete [] listOfAllObjects;
 }
 
-template<typename idType, typename priorityType, typename Comp>
-int PriorityQueue<idType, priorityType, Comp>::size(){
-	return Heap.size();
+template<typename idType, typename priorityType, typename Comp, typename Object>
+int PriorityQueue<idType,priorityType,Comp,Object>::size() const{
+	return maxHeap.size();
 }
+
+#endif

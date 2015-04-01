@@ -4,6 +4,8 @@
 // Source code Copyright (C) 2007-2011 by Clifford A. Shaffer.
 
 // Huffman tree node abstract base class
+#ifndef __huffnode__
+#define __huffnode__
 template <typename E> class HuffNode {
 public:
   virtual ~HuffNode() {}                // Base destructor
@@ -41,3 +43,4 @@ public:
   bool isLeaf() { return true; }
 };
 
+#endif
